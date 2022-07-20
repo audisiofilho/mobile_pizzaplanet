@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import { View, ActivityIndicator} from "react-native";
+import { View, ActivityIndicator } from "react-native";
 
 import AppRoutes from "./app.routes";
 import AuthRoutes from "./auth.routes";
 
+import { AuthContext } from "../contexts/AuthContext";
+
 function Routes() {
-  const isAuthenticated = false;
+  const { isAuthenticated } = useContext(AuthContext);
+
   const loading = false;
 
   if (loading) {
@@ -19,7 +22,7 @@ function Routes() {
           alignItems: "center",
         }}
       >
-          <ActivityIndicator size={60} color="#E97601" />
+        <ActivityIndicator size={60} color="#E97601" />
       </View>
     );
   }
