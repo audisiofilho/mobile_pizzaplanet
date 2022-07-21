@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import { View, Text } from "react-native";
+import { AuthContext } from "../../contexts/AuthContext";
 
-export default function Dashboard(){
-    return(
-        <View>
-            <Text>
-                Tela dashboard
-            </Text>
-        </View>
-    )
+import { View, Text, Button } from "react-native";
+
+export default function Dashboard() {
+  const { signOut } = useContext(AuthContext);
+
+  return (
+    <View>
+      <Text>Tela dashboard</Text>
+      <Button title="Sair" onPress={signOut} />
+    </View>
+  );
 }
