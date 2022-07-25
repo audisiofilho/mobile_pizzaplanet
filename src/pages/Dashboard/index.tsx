@@ -16,6 +16,8 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamsList } from "../../routes/app.routes";
 
+import { api } from "../../services/api";
+
 export default function Dashboard() {
   const { signOut } = useContext(AuthContext);
   const navigation =
@@ -28,10 +30,16 @@ export default function Dashboard() {
       return;
     }
 
+    const response = await api.post("/order", {
+      table: Number(number),
+    });
+
     navigation.navigate("Order", {
       number: number,
-      order_id: "12931a-1238173-asd13213",
+      order_id: response.data.id,
     });
+
+    setNumber("");
   }
 
   return (
